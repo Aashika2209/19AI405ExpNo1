@@ -42,7 +42,7 @@
 <p>Measure the performance parameters: For each treatment performance incremented, for each movement performance decremented</p>
 
 <h3>PROGRAM</h3>
-
+```
 <hr>
 import random
 
@@ -82,7 +82,6 @@ class MedicinePrescribingAgent:
             self.move()
         print("\nFinal Performance Score:", self.performance)
 
-# --- Simulation Run ---
 hospital = HospitalEnvironment()
 agent = MedicinePrescribingAgent(hospital)
 agent.run(steps=6)
@@ -90,7 +89,7 @@ agent.run(steps=6)
 
 
 </hr>
-
+```
 <h3>OUTPUT</h3>
 
 <img width="493" height="309" alt="Screenshot 2025-09-08 160333 1" src="https://github.com/user-attachments/assets/585aadb0-72ed-4378-aba8-144b2f3a6fc4" />
