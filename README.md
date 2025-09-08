@@ -44,12 +44,57 @@
 <h3>PROGRAM</h3>
 
 <hr>
+import random
+
+class HospitalEnvironment:
+    def _init_(self):
+        # Two rooms: Room1 and Room2 with random patient temperatures
+        self.rooms = {"Room1": random.uniform(97, 102),
+                      "Room2": random.uniform(97, 102)}
+
+class MedicinePrescribingAgent:
+    def _init_(self, environment):
+        self.env = environment
+        self.location = "Room1"   # Start in Room1
+        self.performance = 0
+
+    def sense(self):
+        return self.env.rooms[self.location]
+
+    def prescribe(self, temp):
+        if temp > 98.5:
+            print(f"[{self.location}] Temp={temp:.1f} → Prescribed Medicine ✅")
+            self.performance += 1
+        else:
+            print(f"[{self.location}] Temp={temp:.1f} → No medicine needed")
+        return
+
+    def move(self):
+        # Switch between rooms
+        self.location = "Room2" if self.location == "Room1" else "Room1"
+        self.performance -= 0.1
+        print(f"Moved to {self.location} (-0.1 penalty)")
+
+    def run(self, steps=5):
+        for _ in range(steps):
+            temp = self.sense()
+            self.prescribe(temp)
+            self.move()
+        print("\nFinal Performance Score:", self.performance)
+
+# --- Simulation Run ---
+hospital = HospitalEnvironment()
+agent = MedicinePrescribingAgent(hospital)
+agent.run(steps=6)
 
 
 
 </hr>
 
 <h3>OUTPUT</h3>
+
+<img width="493" height="309" alt="Screenshot 2025-09-08 160333 1" src="https://github.com/user-attachments/assets/585aadb0-72ed-4378-aba8-144b2f3a6fc4" />
+
 
 
 
